@@ -9,14 +9,15 @@ See our paper for details of how this data was collected:
 
 Please cite our paper if you find our data useful.  The JSON files in `saw/saw_annotations_json`
 are licensed under a [Creative Commons Attribution 4.0 International
-License](http://creativecommons.org/licenses/by/4.0/).
+License](http://creativecommons.org/licenses/by/4.0/). This directory will be
+created when you run the `download_saw.sh` script.
 
 Please let me know if you have any questions: Balazs Kovacs, bkovacs@cs.cornell.edu.
 
 
 ## JSON Data Format
 
-The data format of the original Intrinsic Images in the Wild is extended
+The data format of the original [Intrinsic Images in the Wild](http://opensurfaces.cs.cornell.edu/publications/intrinsic/) paper is extended
 with the new type of annotations in SAW. Each photo is indexed by its OpenSurfaces ID,
 stored in `saw/saw_images_512/[id].png` and
 `saw/saw_annotations_json/[id].json`.
@@ -37,6 +38,15 @@ Below is an example judgements JSON file with comments:
       # Name used to give attribution to the photographer
       # This is empty for images in the NYUv2 dataset
       "attribution_name": "David Shankbone",
+
+      # This is true if the photo is part of the NYUv2 dataset
+      "in_nyu_dataset": true,
+
+	  # Index of the image in the NYUv2 dataset. We use this to establish
+	  # correspondence between our OpenSurfaces ID and the normal and depth maps
+	  # for the NYUv2 images.
+	  # It is null for images that are not in the NYUv2 dataset.
+      "nyu_idx": 417,
 
       # URL used to give attribution to the photographer (e.g. flickr URL)
       # This is empty for images in the NYUv2 dataset
