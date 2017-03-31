@@ -1,0 +1,12 @@
+
+# basic libraries
+pillow>=2.7.0,<3.0
+h5py>=2.5.0,<2.6
+
+# scientific computing (base libraries)
+numpy>=1.11.0,<1.12
+scipy>=0.16.1,<0.17
+scikit-image>=0.11.3,<0.12
+
+# custom progressbar fork
+git+https://github.com/seanbell/python-progressbar
