@@ -1,4 +1,4 @@
-# Shading Annotations in the Wild
+# Shading Annotations in the Wild (SAW)
 
 Code and data for paper "[Shading Annotations in the Wild](http://opensurfaces.cs.cornell.edu/publications/saw/)".
 
@@ -61,4 +61,4 @@ Please cite our paper if you use our code:
 ```
 
 ## Contact
-Please contact [Balazs Kovacs](bkovacs.com) with any questions.
+Please contact [Balazs Kovacs](http://bkovacs.com) with any questions.
