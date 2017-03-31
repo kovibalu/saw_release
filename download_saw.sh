@@ -5,8 +5,8 @@
 # Crowd-sourced annotations: saw_annotations_json.zip -> ~200 MB
 # Photo ID list for trainining/validation/test set: saw_splits.zip -> ~20 KB
 # Pixel labels for (NS-ND, NS-SB, S classes, see paper for details): saw_pixel_labels.zip -> ~55 MB
-# Pixel labels visualization (NS-ND: red, NS-SB: cyan, S: green, see paper for details): saw_label_images_512.zip -> ~1.8 GB
 # Resized images: saw_images_512.zip -> ~1.8 GB
+# Pixel labels visualization (NS-ND: red, NS-SB: cyan, S: green, see paper for examples): saw_label_images_512.zip -> ~1.8 GB
 # NYUv2 depth, normals and valid pixel masks: saw_nyu-depthv2.zip -> ~4.0 GB
 # Our trained net weights: saw_pixelnet-614.zip -> ~0.7 GB
 # Decompositions for all photos for each baseline: [algorithm slug]-[algorithm ID].zip (e.g. bell2014_densecrf-1141.zip)-> ~2.5 GB for each algorithm

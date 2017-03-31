@@ -32,8 +32,10 @@ To download all data related to the dataset, run:
 ./download_saw.sh
 ```
 
-The whole dataset download size is ~26.7GB, please see the documentation in the script for a
-detailed breakdown of sizes for the different parts of the dataset.
+The whole dataset download size is ~26.7GB, please see the documentation in the
+script for a detailed breakdown of sizes for the different parts of the
+dataset. For detailed documentation on the format of the downloaded annotations
+in `saw/saw_annotations_json` see `ANNO_FORMAT.md`.
 
 ## Usage
 ### Precision-recall Curves
