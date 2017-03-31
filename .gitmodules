@@ -1,0 +1,4 @@
+[submodule "caffe"]
+	path = caffe
+	url = https://github.com/kovibalu/caffe.git
+	branch = saw_caffe_release
