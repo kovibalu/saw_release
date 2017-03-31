@@ -32,7 +32,7 @@ To download all data related to the dataset, run:
 ./download_saw.sh
 ```
 
-The whole dataset takes up ~26.7GB, please see the documentation in the script for a
+The whole dataset download size is ~26.7GB, please see the documentation in the script for a
 detailed breakdown of sizes for the different parts of the dataset.
 
 ## Usage
@@ -50,7 +50,7 @@ python main.py generate_labels
 ```
 
 ## Citation
-Please cite our paper if you use our code:
+Please cite our paper if you use our code or data:
 ```
 @article{kovacs17shading,
 	author = "Balazs Kovacs and Sean Bell and Noah Snavely and Kavita Bala",
