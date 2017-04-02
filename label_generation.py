@@ -78,7 +78,7 @@ def generate_labels(saw_image_dir, saw_anno_dir, splits_dir, nyu_dataset_dir,
             photo_id=photo_id, pixel_labels=pixel_labels,
         )
         np.save(
-            os.path.join(pixel_labels_dir, '%s.npy' % photo_id), pixel_labels)
+            os.path.join(pixlabel_dir, '%s.npy' % photo_id), pixel_labels)
 
 
 def get_region_masks(photo_dic, img_w, img_h):
