@@ -8,7 +8,8 @@ from PIL import Image
 from scipy.ndimage import (binary_dilation, binary_erosion,
                            generate_binary_structure, zoom)
 
-from utils import (compute_color_gradmag, compute_gradmag, load_all_photo_ids,
+from utils import (compute_color_gradmag, compute_gradmag,
+                   get_pixel_labels_dirname, load_all_photo_ids,
                    load_annotations, load_depth_normals, progress_bar,
                    render_full_complex_polygon_mask, vis_pixel_labels)
 
@@ -20,9 +21,40 @@ def generate_labels(saw_image_dir, saw_anno_dir, splits_dir, nyu_dataset_dir,
     Generates pixel labels for each photo based on the NYUv2 dataset depths,
     normals and masks and the Shading Annotations in the Wild (SAW) dataset
     annotations.
+
+    :param saw_image_dir: Directory which contains the SAW images (input to the
+    CNN).
+
+    :param saw_anno_dir: Directory which contains the SAW crowdsourced annotations.
+
+    :param splits_dir: Directory which contains the list of photo IDs for each
+    dataset split (training, validation, test).
+
+    :param nyu_dataset_dir: Directory which contains the NYUv2 depth dataset.
+
+    :param out_dir: Directory where we will save the generated pixel labels.
+
+    :param filter_size: The size of the filter which is used for "label
+    dilation" for the NS-SB and NS-ND labels. See our paper for details.
+
+    :param ignore_border: We ignore ``ignore_border`` * max(image_width,
+    image_height) pixels around the border and assign ignored labels there.
+
+    :param depth_gradmag_thres: Depth gradient magnitude threshold (tau_depth),
+    see our paper for details.
+
+    :param normal_gradmag_thres: Normal gradient magnitude threshold (tau_normal),
+    see our paper for details.
     """
     photo_ids = load_all_photo_ids(splits_dir)
     depths, normals, masks = load_depth_normals(nyu_dataset_dir)
+
+    pixlabel_dirname = get_pixel_labels_dirname(
+        filter_size=filter_size, ignore_border=ignore_border,
+        normal_gradmag_thres=normal_gradmag_thres,
+        depth_gradmag_thres=depth_gradmag_thres,
+    )
+    pixlabel_dir = os.path.join(out_dir, pixlabel_dirname)
 
     print 'Generating pixel labels...'
     for photo_id in progress_bar(photo_ids):
@@ -40,7 +72,7 @@ def generate_labels(saw_image_dir, saw_anno_dir, splits_dir, nyu_dataset_dir,
         )
         # Save pixel labels blended with the image for visualization
         vis_pixel_labels(
-            saw_image_dir=saw_image_dir, out_dir=out_dir,
+            saw_image_dir=saw_image_dir, pixlabel_dir=pixlabel_dir,
             photo_id=photo_id, pixel_labels=pixel_labels,
         )
         np.save(os.path.join(out_dir, '%s.npy' % photo_id), pixel_labels)

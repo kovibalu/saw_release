@@ -81,6 +81,14 @@ def gen_class_weights_str(class_weights):
     return 'class_weights-%s' % suffix
 
 
+def get_pixel_labels_dirname(filter_size=0, ignore_border=0.05,
+                             normal_gradmag_thres=1.5,
+                             depth_gradmag_thres=2.0):
+    return 'saw_data-filter_size_%s-ignore_border_%.2f-normal_gradmag_thres_%.1f-depth_gradmag_thres_%.1f' % (
+        filter_size, ignore_border, normal_gradmag_thres, depth_gradmag_thres
+    )
+
+
 def to_perc(x):
     return '%.2f%%' % (x * 100)
 
@@ -175,7 +183,7 @@ def load_depth_normals(nyu_dataset_dir):
     return depths, normals, masks
 
 
-def vis_pixel_labels(saw_image_dir, out_dir, photo_id, pixel_labels):
+def vis_pixel_labels(saw_image_dir, pixlabel_dir, photo_id, pixel_labels):
     """ Saves an image which visualizes the SAW pixel labels as colored pixels
     blended with the original photo. """
     img = load_photo(saw_image_dir, photo_id)
@@ -196,7 +204,7 @@ def vis_pixel_labels(saw_image_dir, out_dir, photo_id, pixel_labels):
 
     pil_label_img = numpy_to_pil(label_img)
     img.paste(pil_label_img, (0, 0), pil_label_img)
-    img.save(os.path.join(out_dir, '%s_labels.png' % photo_id))
+    img.save(os.path.join(pixlabel_dir, '%s_labels.png' % photo_id))
 
 
 ###############
