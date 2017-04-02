@@ -8,7 +8,7 @@ from PIL import Image
 from scipy.ndimage import (binary_dilation, binary_erosion,
                            generate_binary_structure, zoom)
 
-from utils import (compute_color_gradmag, compute_gradmag,
+from utils import (compute_color_gradmag, compute_gradmag, ensuredir,
                    get_pixel_labels_dirname, load_all_photo_ids,
                    load_annotations, load_depth_normals, progress_bar,
                    render_full_complex_polygon_mask, vis_pixel_labels)
@@ -47,6 +47,7 @@ def generate_labels(saw_image_dir, saw_anno_dir, splits_dir, nyu_dataset_dir,
     see our paper for details.
     """
     photo_ids = load_all_photo_ids(splits_dir)
+    print 'Loading NYUv2 dataset...'
     depths, normals, masks = load_depth_normals(nyu_dataset_dir)
 
     pixlabel_dirname = get_pixel_labels_dirname(
@@ -55,6 +56,7 @@ def generate_labels(saw_image_dir, saw_anno_dir, splits_dir, nyu_dataset_dir,
         depth_gradmag_thres=depth_gradmag_thres,
     )
     pixlabel_dir = os.path.join(out_dir, pixlabel_dirname)
+    ensuredir(pixlabel_dir)
 
     print 'Generating pixel labels...'
     for photo_id in progress_bar(photo_ids):
