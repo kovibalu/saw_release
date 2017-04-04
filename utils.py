@@ -38,14 +38,18 @@ def plot_2D_arrays(arrs, title='', xlabel='', xinterval=None, ylabel='', yinterv
     sns.set(font_scale=1.5)
     sns.set_palette('husl', 8)
 
-    for arr in arrs:
+    for i, arr in enumerate(arrs):
         if arr.ndim != 2 or arr.shape[1] != 2:
             raise ValueError(
                 'The array should be 2D and the second dimension should be 2!'
                 ' Shape: %s' % str(arr.shape)
             )
 
-        plt.plot(arr[:, 0], arr[:, 1])
+        # Plot last one with black
+        if i == len(arrs) - 1:
+            plt.plot(arr[:, 0], arr[:, 1], color='black')
+        else:
+            plt.plot(arr[:, 0], arr[:, 1])
 
     # If simplified, we don't show text anywhere
     if not simplified:
