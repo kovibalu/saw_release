@@ -9,6 +9,7 @@
 # Pixel labels visualization (NS-ND: red, NS-SB: cyan, S: green, see paper for examples): saw_label_images_512.zip -> ~1.8 GB
 # NYUv2 depth, normals and valid pixel masks: saw_nyu-depthv2.zip -> ~4.0 GB
 # Our trained net weights: saw_pixelnet-614.zip -> ~0.7 GB
+# Smooth shading heatmap predictions for all photos: saw_heatmaps.zip -> ~1.3 GB
 # Decompositions for all photos for each baseline: [algorithm slug]-[algorithm ID].zip (e.g. bell2014_densecrf-1141.zip)-> ~2.5 GB for each algorithm
 
 function download_unzip {
@@ -30,7 +31,7 @@ PARENT_DIR="saw"
 if [ ! -d "$PARENT_DIR" ]; then
 	mkdir "$PARENT_DIR"
 fi
-FILES=("saw_annotations_json" "saw_splits" "saw_pixel_labels" "saw_images_512" "saw_label_images_512" "saw_nyu-depthv2" "saw_pixelnet-614")
+FILES=("saw_annotations_json" "saw_splits" "saw_pixel_labels" "saw_images_512" "saw_label_images_512" "saw_nyu-depthv2" "saw_pixelnet-614" "saw_heatmaps")
 for file in "${FILES[@]}"
 do
 	download_unzip $PARENT_DIR $file
